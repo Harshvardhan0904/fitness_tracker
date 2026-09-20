@@ -6,13 +6,24 @@ from dotenv import load_dotenv
 
 from food_analyzer import analyze_food_image
 from database import add_food, get_connection
-
+from database import (
+    create_tables,
+    add_food,
+    get_connection
+)
+from database import (
+    create_tables,
+    add_food,
+    get_connection
+)
 
 load_dotenv()
 
 api_key = os.getenv("API_KEY")
 
 model_name = "qwen/qwen3.8-27b"
+
+create_tables()
 
 # Streamlit Cloud fallback
 if not api_key:
@@ -29,7 +40,7 @@ if not model_name:
 if not api_key:
     st.error("Groq API key is not configured.")
     st.stop()
-    
+
 st.header("🍛 Food Tracker")
 
 food_date = st.date_input(
